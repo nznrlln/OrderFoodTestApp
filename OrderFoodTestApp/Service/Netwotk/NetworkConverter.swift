@@ -25,23 +25,31 @@ final class NetworkConverter: NetworkConverterProtocol {
 
         var categories = [CategoryModel]()
 
+        let group = DispatchGroup()
+
         data.сategories.forEach { categoryData in
 
-            networkManager.getImage(stringUrl: categoryData.imageURL) { image in
-                guard let image = image else { return }
-                
-                let newCategory = CategoryModel(
-                    id: categoryData.id,
-                    name: categoryData.name,
-                    image: image
-                )
+            DispatchQueue.global().sync {
+                group.enter()
 
-                categories.append(newCategory)
-                if categories.count == data.сategories.count {
-                    complition(categories)
+                networkManager.getImage(stringUrl: categoryData.imageURL) { image in
+                    guard let image = image else { return }
+
+                    let newCategory = CategoryModel(
+                        id: categoryData.id,
+                        name: categoryData.name,
+                        image: image
+                    )
+
+                    categories.append(newCategory)
+                    if categories.count == data.сategories.count {
+                        complition(categories)
+                    }
+
+                    group.leave()
                 }
+                group.wait()
             }
-
         }
     }
 
@@ -51,28 +59,37 @@ final class NetworkConverter: NetworkConverterProtocol {
         var dishes = [DishModel]()
         var tags = [String]()
 
+        let group = DispatchGroup()
+
         data.dishes.forEach { dishData in
 
-            networkManager.getImage(stringUrl: dishData.imageURL) { image in
-                guard let image = image else { return }
-                let newDish = DishModel(
-                    id: dishData.id,
-                    name: dishData.name,
-                    price: dishData.price,
-                    weight: dishData.weight,
-                    description: dishData.description,
-                    image: image,
-                    tags: dishData.tags
-                )
+            DispatchQueue.global().sync {
+                group.enter()
 
-                dishes.append(newDish)
-                tags.append(contentsOf: newDish.tags)
+                networkManager.getImage(stringUrl: dishData.imageURL) { image in
+                    guard let image = image else { return }
+                    let newDish = DishModel(
+                        id: dishData.id,
+                        name: dishData.name,
+                        price: dishData.price,
+                        weight: dishData.weight,
+                        description: dishData.description,
+                        image: image,
+                        tags: dishData.tags
+                    )
 
-                if dishes.count == data.dishes.count {
-                    let uniqueTags = Array(Set(tags))
+                    dishes.append(newDish)
+                    tags.append(contentsOf: newDish.tags)
 
-                    complition(dishes, uniqueTags)
+                    if dishes.count == data.dishes.count {
+                        let uniqueTags = Array(Set(tags))
+
+                        complition(dishes, uniqueTags)
+                    }
+
+                    group.leave()
                 }
+                group.wait()
             }
         }
 

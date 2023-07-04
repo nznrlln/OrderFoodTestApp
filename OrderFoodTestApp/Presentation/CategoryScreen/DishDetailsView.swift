@@ -11,11 +11,11 @@ struct DishDetailsView: View {
 
     @Binding var isPresented: Bool
 
-    var likeButtonTapAction: (() -> ())?
-    var orderButtonTapAction: (() -> ())?
-
     // data needed to fill the row
     let dish: DishModel
+
+    var likeButtonTapAction: (() -> ())?
+    var orderButtonTapAction: (() -> ())?
 
     // view size
     private let viewRadius: CGFloat = 15
@@ -49,7 +49,6 @@ struct DishDetailsView: View {
                     Spacer()
                 }
                 .frame(width: imageWidth)
-//                .padding(.horizontal, 16)
 
                 dishDescription
 
@@ -69,8 +68,7 @@ struct DishDetailsView: View {
                     isPresented.toggle()
                 }
         )
-        .ignoresSafeArea(edges: .top)
-
+        .ignoresSafeArea(.all)
 
     }
 

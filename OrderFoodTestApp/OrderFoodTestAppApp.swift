@@ -25,7 +25,6 @@ struct OrderFoodTestAppApp: App {
                 .toolbarBackground(Palette.mainBackgroundColor, for: .tabBar)
 
                 EmptyView()
-//                CategoryScreenView(viewModel: CategoryScreenViewModel(categotyName: "nla"))
                     .tabItem {
                         Label {
                             Text("Поиск")
@@ -57,7 +56,6 @@ struct OrderFoodTestAppApp: App {
                     }
                     .toolbarBackground(.visible, for: .tabBar)
                     .toolbarBackground(Palette.mainBackgroundColor, for: .tabBar)
-
             }
         }
     }

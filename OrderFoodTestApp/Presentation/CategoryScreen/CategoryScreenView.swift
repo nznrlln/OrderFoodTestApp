@@ -22,7 +22,6 @@ struct CategoryScreenView<VM : CategoryScreenViewModelProtocol>: View {
     var body: some View {
         ZStack {
             NavigationView {
-
                 ScrollView(.vertical, showsIndicators: false) {
 
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -38,10 +37,6 @@ struct CategoryScreenView<VM : CategoryScreenViewModelProtocol>: View {
                 }
                 .padding(.top, 8)
                 .background(Palette.mainBackgroundColor)
-                .onViewDidLoad {
-                    viewModel.fetchDishes()
-                }
-
 
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle(viewModel.categotyName)
@@ -56,19 +51,22 @@ struct CategoryScreenView<VM : CategoryScreenViewModelProtocol>: View {
                         NavigationBarTrailingItems()
                     }
                 }
-
             }
-            .navigationBarBackButtonHidden(true)
 
             if viewModel.showDishDetails,
                viewModel.selectedDish != nil {
 
-                DishDetailsView(
-                    isPresented: $viewModel.showDishDetails,
-                    orderButtonTapAction: {
-                        viewModel.addToOrder(dish: viewModel.selectedDish!)
-                    }, dish: viewModel.selectedDish!)
+                DishDetailsView(isPresented: $viewModel.showDishDetails, dish: viewModel.selectedDish!) {
+                    debugPrint("item liked")
+                } orderButtonTapAction: {
+                    viewModel.addToOrder(dish: viewModel.selectedDish!)
+                }
             }
+
+        }
+        .navigationBarBackButtonHidden(true)
+        .onViewDidLoad {
+            viewModel.fetchDishes()
         }
 
     }

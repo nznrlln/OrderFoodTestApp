@@ -109,6 +109,5 @@ struct OrderScreenView_Previews: PreviewProvider {
     
     static var previews: some View {
         OrderScreenView(viewModel: OrderScreenViewModel())
-
     }
 }

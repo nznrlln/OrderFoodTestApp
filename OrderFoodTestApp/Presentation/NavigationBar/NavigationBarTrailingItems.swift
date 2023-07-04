@@ -14,6 +14,7 @@ struct NavigationBarTrailingItems: View {
     var body: some View {
         VStack {
             userImageButton
+                .disabled(true)
         }
     }
 

@@ -15,9 +15,9 @@ struct DishOrderRow: View {
     var plusButtonTapAction: (() -> ())?
 
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(alignment: .center, spacing: 8) {
             dishImage
-            dishDiscription
+            dishDescription
             Spacer()
             countView
         }
@@ -34,7 +34,7 @@ struct DishOrderRow: View {
             .cornerRadius(6)
     }
 
-    private var dishDiscription: some View {
+    private var dishDescription: some View {
         VStack(alignment: .leading, spacing: 4) {
             dishName
             HStack {
@@ -47,7 +47,7 @@ struct DishOrderRow: View {
 
     private var dishName: some View {
         Text(orderItem.dish.name)
-            .font(Fonts.sfuiDisplayMed16)
+            .font(Fonts.sfuiDisplayReg14)
             .foregroundColor(Palette.mainTextColor)
     }
 
@@ -68,7 +68,8 @@ struct DishOrderRow: View {
 
             minusButton
 
-            Text(String(orderItem.orderCount)) // count
+            Text(String(orderItem.orderCount))
+                .frame(minWidth: 25)
 
             plusButton
         }

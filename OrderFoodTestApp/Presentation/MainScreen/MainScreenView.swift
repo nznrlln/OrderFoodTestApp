@@ -16,28 +16,28 @@ struct MainScreenView<VM : MainScreenViewModelProtocol>: View {
     ]
 
     var body: some View {
-            NavigationView {
-                ScrollView {
-                    categoriesCollection
+        NavigationView {
+            ScrollView {
+                categoriesCollection
+            }
+            .padding(.top, 16)
+            .background(Palette.mainBackgroundColor)
+
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationBarLeadingItems(
+                        cityName: viewModel.cityName,
+                        date: viewModel.currentDate
+                    )
                 }
-                .padding(.top, 16)
-                .background(Palette.mainBackgroundColor)
 
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationBarLeadingItems(
-                            cityName: viewModel.cityName,
-                            date: viewModel.currentDate
-                        )
-                    }
-
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationBarTrailingItems {
-                            debugPrint("userImageTapped")
-                        }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationBarTrailingItems {
+                        debugPrint("userImageTapped")
                     }
                 }
             }
+        }
         .onViewDidLoad {
             viewModel.getDate()
             viewModel.fetchCategories()
