@@ -30,7 +30,7 @@ final class NetworkManager: NetworkManagerProtocol {
                     let categories = try JSONDecoder().decode(CategoriesJSONModel.self, from: data)
                     complition(categories)
                 } catch let error {
-                    debugPrint("Error discription: \(error)")
+                    debugPrint("Error description: \(error)")
                     complition(nil)
                 }
             }
@@ -47,7 +47,7 @@ final class NetworkManager: NetworkManagerProtocol {
                     let dishes = try JSONDecoder().decode(DishesJSONModel.self, from: data)
                     complition(dishes)
                 } catch let error {
-                    debugPrint("Error discription: \(error)")
+                    debugPrint("Error description: \(error)")
                     complition(nil)
                 }
             }
