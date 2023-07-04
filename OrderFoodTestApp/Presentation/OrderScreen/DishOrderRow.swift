@@ -52,13 +52,13 @@ struct DishOrderRow: View {
     }
 
     private var dishPrice: some View {
-        Text(String(orderItem.dish.price))
+        Text(String(orderItem.dish.price) + " ₽")
             .font(Fonts.sfuiDisplayReg14)
             .foregroundColor(Palette.mainTextColor)
     }
 
     private var dishWeight: some View {
-        Text(String(orderItem.dish.weight))
+        Text(String(orderItem.dish.weight) + " гр.")
             .font(Fonts.sfuiDisplayReg14)
             .foregroundColor(Palette.secondaryTextColor)
     }

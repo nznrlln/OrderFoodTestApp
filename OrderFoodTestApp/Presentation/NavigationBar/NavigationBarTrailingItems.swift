@@ -12,7 +12,9 @@ struct NavigationBarTrailingItems: View {
     var userImageTapAction: (() -> ())?
     
     var body: some View {
+        VStack {
             userImageButton
+        }
     }
 
     var userImageButton: some View {

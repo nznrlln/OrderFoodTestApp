@@ -118,13 +118,13 @@ struct DishDetailsView: View {
     }
 
     private var dishPrice: some View {
-        Text(String(dish.price))
+        Text(String(dish.price) + " ₽")
             .font(Fonts.sfuiDisplayReg14)
             .foregroundColor(Palette.mainTextColor)
     }
 
     private var dishWeight: some View {
-        Text(String(dish.weight))
+        Text(String(dish.weight) + " гр.")
             .font(Fonts.sfuiDisplayReg14)
             .foregroundColor(Palette.secondaryTextColor)
     }
