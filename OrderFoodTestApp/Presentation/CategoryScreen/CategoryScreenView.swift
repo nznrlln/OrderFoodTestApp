@@ -16,7 +16,7 @@ struct CategoryScreenView<VM : CategoryScreenViewModelProtocol>: View {
         GridItem(.adaptive(minimum: 35), spacing: 8)
     ]
     private let vGridLayout = [
-        GridItem(.adaptive(minimum: 109), spacing: 16, alignment: .top)
+        GridItem(.adaptive(minimum: 109), spacing: 8, alignment: .top)
     ]
 
     var body: some View {
