@@ -142,7 +142,7 @@ struct DishDetailsView: View {
             Text("Добавить в корзину")
                 .font(Fonts.sfuiDisplayMed16)
                 .foregroundColor(.white)
-                .padding(.horizontal, 82)
+//                .padding(.horizontal, 82)
                 .padding(.vertical, 15)
         }
         .frame(width: imageWidth, height: 48, alignment: .center)
